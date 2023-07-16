@@ -1,4 +1,12 @@
 <div class="header-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      (input)="onSearchChange($event)"
+      placeholder="Search"
+    />
+  </mat-form-field>
   <button mat-flat-button color="primary" routerLink="/hero-detail">
     <mat-icon>add</mat-icon>
     <span>Add new hero</span>

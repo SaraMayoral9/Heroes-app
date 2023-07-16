@@ -17,6 +17,7 @@ export class PaginatedListComponent implements OnInit {
   totalObjects = 0;
   pageSize = 10;
   currentPage = 0;
+  searchValue = '';
 
   constructor(private heroService: HeroService, public modal: MatDialog) {
   }
@@ -27,7 +28,7 @@ export class PaginatedListComponent implements OnInit {
 
   loadObjects() {
     this.allHeroes = this.heroService
-      .getAllHeroes()
+      .filterHeroesByName(this.searchValue)
     this.totalObjects = this.allHeroes.length;
     this.updatePagedObjects(this.allHeroes);
       ;
@@ -36,6 +37,12 @@ export class PaginatedListComponent implements OnInit {
   onPageChange(event: PageEvent): void {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
+    this.loadObjects();
+  }
+
+  public onSearchChange($event: any) {
+    const value = $event.target.value;
+    this.searchValue = value.trim().toLowerCase();
     this.loadObjects();
   }
 

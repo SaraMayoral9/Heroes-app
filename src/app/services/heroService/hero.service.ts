@@ -10,8 +10,13 @@ export class HeroService {
   private readonly storageKey = 'heroes';
   constructor() { }
 
-  getAllHeroes(): any[] {
+  getAllHeroes(): Hero[] {
     return this.getItemsFromStorage();
+  }
+
+  filterHeroesByName(searchString: string): Hero[]{
+    const heroes = this.getItemsFromStorage();
+    return heroes.filter(hero => hero.name.toLowerCase().includes(searchString.toLowerCase()));
   }
 
   createItem(hero: Hero): void {
@@ -35,12 +40,12 @@ export class HeroService {
   }
 
 
-  private getItemsFromStorage(): any[] {
+  private getItemsFromStorage(): Hero[] {
     const storedItems = localStorage.getItem(this.storageKey);
     return storedItems ? JSON.parse(storedItems) : [];
   }
 
-  private saveItemsToStorage(items: any[]): void {
+  private saveItemsToStorage(items: Hero[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(items));
   }
 }
