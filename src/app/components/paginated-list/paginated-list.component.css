@@ -1,0 +1,29 @@
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 4vw;
+    margin: 5% 1%;
+}
+
+.list-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.mat-list{
+ width: 50vw;
+}
+::ng-deep .mat-list-item-content{
+    display: flex;
+    justify-content: space-around !important;
+}
+  
+.paginator-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+  

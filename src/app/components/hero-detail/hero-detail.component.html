@@ -1,0 +1,14 @@
+<button mat-button color="primary" routerLink="heroes">
+    <mat-icon>arrow_back</mat-icon>
+    Go Back
+  </button>
+  <div class="detail-container">
+    <h2>Add New Hero</h2>
+    <form (submit)="onSubmit()">
+      <label>Name:</label>
+      <input [(ngModel)]="heroName" name="name" required />
+      <br />
+      <button mat-flat-button color="primary" disable="" type="submit">Add Hero</button>
+    </form>
+  </div>
+  
