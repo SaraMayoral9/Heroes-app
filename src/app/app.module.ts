@@ -15,12 +15,14 @@ import { FormsModule } from '@angular/forms';
 import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CapitalizeDirective } from './shared/directives/capitalize.directive';
 @NgModule({
   declarations: [
     AppComponent,
     PaginatedListComponent,
     HeroDetailComponent,
-    DeleteConfirmationComponent
+    DeleteConfirmationComponent,
+    CapitalizeDirective
   ],
   imports: [
     BrowserModule,
