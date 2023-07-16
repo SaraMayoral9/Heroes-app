@@ -3,12 +3,14 @@
     Go Back
   </button>
   <div class="detail-container">
-    <h2>Add New Hero</h2>
-    <form (submit)="onSubmit()">
+    <h2 *ngIf="!hero">Add New Hero</h2>
+    <h2 *ngIf="hero">Edit Hero</h2>
+    <form [formGroup]="form" (submit)="onSubmit()">
       <label>Name:</label>
-      <input Capitalize [(ngModel)]="heroName" name="name" required />
+      <input Capitalize formControlName="name"/>
       <br />
-      <button mat-flat-button color="primary" disable="" type="submit">Add Hero</button>
+      <button *ngIf="!hero" mat-flat-button color="primary" [disabled]="!form.valid" type="submit">Add Hero</button>
+      <button *ngIf="hero" mat-flat-button color="primary" [disabled]="!form.valid" type="submit">Edit Hero</button>
     </form>
   </div>
   

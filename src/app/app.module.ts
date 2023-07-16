@@ -11,7 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,6 +29,7 @@ import { CapitalizeDirective } from './shared/directives/capitalize.directive';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MatPaginatorModule,
     MatListModule,
     MatIconModule,

@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
   { path: 'heroes', component: PaginatedListComponent },
   { path: 'hero-detail', component: HeroDetailComponent },
+  { path: 'hero-detail/:id', component: HeroDetailComponent },
   { path: '**', redirectTo: '/heroes' }
 ];
 

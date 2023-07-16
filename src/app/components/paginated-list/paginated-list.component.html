@@ -1,11 +1,7 @@
 <div class="header-container">
   <mat-form-field appearance="fill">
     <mat-label>Search</mat-label>
-    <input
-      matInput
-      (input)="onSearchChange($event)"
-      placeholder="Search"
-    />
+    <input matInput (input)="onSearchChange($event)" placeholder="Search" />
   </mat-form-field>
   <button mat-flat-button color="primary" routerLink="/hero-detail">
     <mat-icon>add</mat-icon>
@@ -13,21 +9,23 @@
   </button>
 </div>
 <div class="list-container">
-    <mat-list>
-      <mat-list-item class="item-list" *ngFor="let item of pagedObjects">
-        <span>{{ item.name }}</span>
-        <div>
-          <mat-icon>mode_edit</mat-icon>
-          <mat-icon color="warn" (click)="openDeleteConfirmationDialog(item)">delete</mat-icon>
-        </div>
-      </mat-list-item>
-    </mat-list>
-  </div>
-  <div class="paginator-container">
-    <mat-paginator
-      [length]="totalObjects"
-      [pageSize]="pageSize"
-      (page)="onPageChange($event)"
-    >
-    </mat-paginator>
-  </div>
+  <mat-list>
+    <mat-list-item class="item-list" *ngFor="let item of pagedObjects">
+      <span>{{ item.name }}</span>
+      <div>
+        <mat-icon color="primary" (click)="editHero(item)">mode_edit</mat-icon>
+        <mat-icon color="warn" (click)="openDeleteConfirmationDialog(item)"
+          >delete</mat-icon
+        >
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
+<div class="paginator-container">
+  <mat-paginator
+    [length]="totalObjects"
+    [pageSize]="pageSize"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

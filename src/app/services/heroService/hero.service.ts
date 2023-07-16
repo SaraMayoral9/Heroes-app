@@ -2,43 +2,57 @@ import { Injectable } from '@angular/core';
 import { Hero } from 'src/app/models/hero.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HeroService {
-
-
   private readonly storageKey = 'heroes';
-  constructor() { }
+  constructor() {}
 
-  getAllHeroes(): Hero[] {
+  public getAllHeroes(): Hero[] {
     return this.getItemsFromStorage();
   }
 
-  filterHeroesByName(searchString: string): Hero[]{
-    const heroes = this.getItemsFromStorage();
-    return heroes.filter(hero => hero.name.toLowerCase().includes(searchString.toLowerCase()));
+  public getHeroById(id: number): Hero[] {
+    return this.getItemsFromStorage().filter((h) => h.id === id);
   }
 
-  createItem(hero: Hero): void {
+  public filterHeroesByName(searchString: string): Hero[] {
+    const heroes = this.getItemsFromStorage();
+    return heroes.filter((hero) =>
+      hero.name.toLowerCase().includes(searchString.toLowerCase())
+    );
+  }
+
+  public createItem(hero: Hero): void {
     const heroes = this.getItemsFromStorage();
     heroes.push(hero);
     this.saveItemsToStorage(heroes);
   }
 
-  deleteHero(id: number): void {
+  public editHero(updatedHero: Hero): void {
     const items = this.getItemsFromStorage();
-    const index = items.findIndex(h => h.id === id)
+    console.log('before', items);
+    const index = items.findIndex((h) => h.id === updatedHero.id);
+    if (index >= 0 && index < items.length) {
+      items[index] = updatedHero;
+      console.log('after', items);
+      this.saveItemsToStorage(items);
+    }
+  }
+
+  public deleteHero(id: number): void {
+    const items = this.getItemsFromStorage();
+    const index = items.findIndex((h) => h.id === id);
     if (index >= 0 && index < items.length) {
       items.splice(index, 1);
       this.saveItemsToStorage(items);
     }
   }
 
-  public getNextId(): number{
+  public getNextId(): number {
     const items = this.getItemsFromStorage();
     return items.length + 1;
   }
-
 
   private getItemsFromStorage(): Hero[] {
     const storedItems = localStorage.getItem(this.storageKey);

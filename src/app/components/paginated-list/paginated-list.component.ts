@@ -4,37 +4,38 @@ import { PageEvent } from '@angular/material/paginator';
 import { Hero } from 'src/app/models/hero.model';
 import { HeroService } from 'src/app/services/heroService/hero.service';
 import { DeleteConfirmationComponent } from '../delete-confirmation/delete-confirmation.component';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paginated-list',
   templateUrl: './paginated-list.component.html',
-  styleUrls: ['./paginated-list.component.css']
+  styleUrls: ['./paginated-list.component.css'],
 })
 export class PaginatedListComponent implements OnInit {
-  allHeroes: Hero[] = []
+  allHeroes: Hero[] = [];
   pagedObjects: Hero[] = [];
   totalObjects = 0;
   pageSize = 10;
   currentPage = 0;
   searchValue = '';
 
-  constructor(private heroService: HeroService, public modal: MatDialog) {
-  }
+  constructor(
+    private heroService: HeroService,
+    public modal: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadObjects();
   }
 
-  loadObjects() {
-    this.allHeroes = this.heroService
-      .filterHeroesByName(this.searchValue)
+  public loadObjects() {
+    this.allHeroes = this.heroService.filterHeroesByName(this.searchValue);
     this.totalObjects = this.allHeroes.length;
     this.updatePagedObjects(this.allHeroes);
-      ;
   }
-  
-  onPageChange(event: PageEvent): void {
+
+  public onPageChange(event: PageEvent): void {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadObjects();
@@ -51,7 +52,11 @@ export class PaginatedListComponent implements OnInit {
     const endIndex = startIndex + this.pageSize;
     this.pagedObjects = objects.slice(startIndex, endIndex);
   }
-  
+
+  public editHero(hero: Hero): void {
+    this.router.navigate(['/hero-detail', hero.id]);
+  }
+
   public openDeleteConfirmationDialog(hero: Hero): void {
     const dialogRef = this.modal.open(DeleteConfirmationComponent);
 
@@ -62,10 +67,8 @@ export class PaginatedListComponent implements OnInit {
     });
   }
 
-  private deleteHero(hero: Hero){
+  private deleteHero(hero: Hero) {
     this.heroService.deleteHero(hero.id);
-    this.loadObjects()
+    this.loadObjects();
   }
-
-
 }
