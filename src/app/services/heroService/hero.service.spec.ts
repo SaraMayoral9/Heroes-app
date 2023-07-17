@@ -45,7 +45,7 @@ describe('HeroService', () => {
   it('should delete an item from the storage', () => {
     const hero1 = { id: 1,name: 'hero1'};
     const hero2 = { id: 2,name: 'hero2'};
-    localStorage.setItem('items', JSON.stringify([hero1, hero2]));
+    localStorage.setItem('heroes', JSON.stringify([hero1, hero2]));
     service.deleteHero(1);
     const storedItems = JSON.parse(localStorage.getItem('heroes') || '[]');
     expect(storedItems).toEqual([hero2]);
