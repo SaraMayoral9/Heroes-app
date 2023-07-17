@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  heroesapp:
+    image: heroesapp
+    build:
+      context: .
+      dockerfile: ./Dockerfile
