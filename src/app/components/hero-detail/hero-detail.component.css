@@ -3,4 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-items: center;
+}
+
+.create-btn{
+    margin-top: 8%;
+    width: -webkit-fill-available;
 }

@@ -1,16 +1,17 @@
 <button mat-button color="primary" routerLink="heroes">
-    <mat-icon>arrow_back</mat-icon>
-    Go Back
-  </button>
-  <div class="detail-container">
-    <h2 *ngIf="!hero">Add New Hero</h2>
-    <h2 *ngIf="hero">Edit Hero</h2>
-    <form [formGroup]="form" (submit)="onSubmit()">
-      <label>Name:</label>
-      <input Capitalize formControlName="name"/>
-      <br />
-      <button *ngIf="!hero" mat-flat-button color="primary" [disabled]="!form.valid" type="submit">Add Hero</button>
-      <button *ngIf="hero" mat-flat-button color="primary" [disabled]="!form.valid" type="submit">Edit Hero</button>
-    </form>
-  </div>
-  
+  <mat-icon>arrow_back</mat-icon>
+  Go Back
+</button>
+<div class="detail-container">
+  <h2 *ngIf="!hero">Add New Hero</h2>
+  <h2 *ngIf="hero">Edit Hero</h2>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <label>Name:</label>
+    <input Capitalize formControlName="name" />
+    <br />
+    <button mat-flat-button class="create-btn" color="primary" [disabled]="!form.valid" type="submit">
+      <span *ngIf="!hero">Add Hero </span>
+      <span *ngIf="hero">Edit Hero </span>
+    </button>
+  </form>
+</div>

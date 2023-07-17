@@ -16,9 +16,14 @@
 .mat-list{
  width: 50vw;
 }
+
+.item-list{
+    justify-content: space-a;
+}
+
 ::ng-deep .mat-list-item-content{
     display: flex;
-    justify-content: space-around !important;
+    justify-content: space-between !important;
 }
   
 .paginator-container {
